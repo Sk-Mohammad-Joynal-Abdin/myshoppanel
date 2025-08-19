@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Abdin Cyber Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<header>
+  <h1>Admin Dashboard</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="login.html" onclick="logout()">Logout</a>
+  </nav>
+</header>
+<main>
+  <h2>Post a Notice</h2>
+  <form onsubmit="saveNotice(event)">
+    <label>Notice:</label><br>
+    <textarea id="noticeText" required></textarea><br><br>
+    <button type="submit">Save Notice</button>
+  </form>
+  <p style="color:green;" id="msg"></p>
+</main>
+<footer>
+  <p>&copy; 2025 Abdin Cyber Hub and Services | Created by SK MOHAMMAD JOYNAL ABDIN</p>
+</footer>
+
+<script>
+// Redirect if not logged in
+if (localStorage.getItem("loggedIn") !== "true") {
+  window.location.href = "login.html";
+}
+
+// Save notice
+function saveNotice(event) {
+  event.preventDefault();
+  let notice = document.getElementById("noticeText").value;
+  localStorage.setItem("notice", notice);
+  document.getElementById("msg").innerText = "Notice saved successfully!";
+  document.getElementById("noticeText").value = "";
+}
+
+// Logout
+function logout() {
+  localStorage.removeItem("loggedIn");
+}
+</script>
+</body>
+</html>
